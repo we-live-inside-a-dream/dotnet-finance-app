@@ -10,5 +10,5 @@ RUN chmod +x /opt/mssql/bin/sqlservr
 # Expose SQL Server port
 EXPOSE 1433
 
-# Start SQL Server
-CMD ["/bin/bash"]
+# Set entrypoint to start SQL Server
+ENTRYPOINT ["/opt/mssql/bin/sqlservr"]
