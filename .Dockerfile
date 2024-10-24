@@ -11,4 +11,4 @@ RUN chmod +x /opt/mssql/bin/sqlservr
 EXPOSE 1433
 
 # Start SQL Server
-CMD ["/opt/mssql/bin/sqlservr"]
+CMD ["/bin/bash"]
