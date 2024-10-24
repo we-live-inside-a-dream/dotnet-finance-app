@@ -9,22 +9,21 @@ ENV CONFIG_EDGE_BUILD=
 ENV MSSQL_PID=developer
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-# Run updates and install required packages
+# Install dependencies and add Microsoft SQL Server repo
 RUN apt-get update && \
     apt-get install -y \
     curl \
     apt-transport-https \
     gnupg2 \
     ca-certificates \
-    software-properties-common
-
-# Add Microsoft GPG key and SQL Server repository
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
+    software-properties-common && \
+    curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
     curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
 
-# Update apt cache and install SQL Server
+# Update apt cache and install Microsoft SQL Server
 RUN apt-get update && \
-    ACCEPT_EULA=Y apt-get install -y mssql-server
+    ACCEPT_EULA=Y apt-get install -y mssql-server && \
+    apt-get clean
 
 # Set labels
 LABEL com.microsoft.product="Microsoft SQL Server"
