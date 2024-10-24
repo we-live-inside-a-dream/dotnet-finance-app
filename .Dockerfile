@@ -5,6 +5,9 @@ FROM mcr.microsoft.com/mssql/server:2022-latest
 ENV ACCEPT_EULA=Y
 ENV SA_PASSWORD=Modernwarfare2
 
+# Ensure the SQL Server binary is executable
+RUN chmod +x /opt/mssql/bin/sqlservr
+
 # Expose the default SQL Server port
 EXPOSE 1433
 
